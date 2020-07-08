@@ -1,4 +1,3 @@
-/*
 $.getJSON(
     "https://v2-api.sheety.co/bb638adb5782cdebd0f49d570abd2eb0/timeline/years/",
     function (data) {
@@ -22,7 +21,7 @@ $.getJSON(
         }
     }
 )
-*/
+
 
 
 
