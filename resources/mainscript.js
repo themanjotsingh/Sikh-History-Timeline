@@ -25,50 +25,78 @@ $.getJSON(
 
 
 
-$(document).ready(function() {
-  $.getJSON(
-      "https://v2-api.sheety.co/bb638adb5782cdebd0f49d570abd2eb0/timeline/sheet2/",
-      function (data) {
-          //console.log(data)
-          var ul = document.getElementById("chart-bars");
-          
-          for (var i = 0; i < data.sheet2.length; i++) {
-              var each = data.sheet2[i];
-              info = each.name;
-              lines = each.name;
-              //console.log(lines)
+$(document).ready(function () {
+    $.getJSON(
+        "https://v2-api.sheety.co/bb638adb5782cdebd0f49d570abd2eb0/timeline/sheet2/",
+        function (data) {
+            //console.log(data)
+            var ul = document.getElementById("chart-bars");
 
-              
-              
-    
+            for (var i = 0; i < data.sheet2.length; i++) {
+                
+                var each = data.sheet2[i];
 
-              var li = document.createElement('li');
-              li.setAttribute("data-duration", each.years);
-              li.setAttribute("data-color", each.colour);
-              li.setAttribute("style", each.textcolour);
-              li.style.opacity = 1;
-              
-              var para = document.createElement('a');
-              para.appendChild(document.createTextNode(lines))
-              para.setAttribute("href", each.imagelink);
-              para.setAttribute("class", "image-link");
-              para.setAttribute("title", each.blurb);
-              
-              li.appendChild(para);
-              
-             
-              li.style.backgroundColor = each.colour;
-              li.setAttribute("class", "image-link");
+                if (each.years === "-") {
+                    continue;
+                }
+                info = each.name;
+                lines = each.name;
+               
 
-              //li.appendChild(document.createTextNode(lines));
-              ul.appendChild(li);
-              console.log(li)
+                var li = document.createElement('li');
+                li.setAttribute("data-duration", each.years);
+                li.setAttribute("data-color", each.colour);
+                li.setAttribute("style", each.textcolour);
+                li.style.opacity = 1;
 
-          }
-          createChart();
-      }
-  )
+                var para = document.createElement('a');
+                para.appendChild(document.createTextNode(lines))
+                para.setAttribute("href", each.imagelink);
+                para.setAttribute("class", each.class);
+                para.setAttribute("title", each.blurb);
+
+                li.appendChild(para);
+
+
+                li.style.backgroundColor = each.colour;
+                li.setAttribute("class", each.class);
+
+                //li.appendChild(document.createTextNode(lines));
+                ul.appendChild(li);
+                //console.log(li)
+
+            }
+            createChart();
+        }
+    )
 });
+
+$.getJSON(
+    "https://v2-api.sheety.co/bb638adb5782cdebd0f49d570abd2eb0/timeline/legend/",
+    function (data) {
+        //console.log(data)
+
+        for (var i = 0; i < data.legend.length; i++) {
+            var each = data.legend[i];
+
+            lines = each.for
+            //console.log(lines)
+
+            var tr = document.getElementById("legend");
+
+            var td = document.createElement('td');
+
+            td.style.backgroundColor = (each.barcolour);
+            td.style.color = (each.textcolour);
+            td.style.width="22%";
+
+            td.appendChild(document.createTextNode(lines));
+            tr.appendChild(td);
+            //console.log(li)
+
+        }
+    }
+)
 
 
 
@@ -106,11 +134,11 @@ function createChart(e) {
         // apply css
         el.style.left = `${left}px`;
         el.style.width = `${width}px`;
-        
-  /*      if (e.type == "load") {
-            el.style.backgroundColor = el.dataset.color;
-            el.style.opacity = 1;
-        }*/
+
+        /*      if (e.type == "load") {
+                  el.style.backgroundColor = el.dataset.color;
+                  el.style.opacity = 1;
+              }*/
     });
 }
 
@@ -119,22 +147,22 @@ function createChart(e) {
 //window.addEventListener("resize", createChart);
 
 
-$(document).ready(function() {
-    $('.image-link').magnificPopup({
+$(document).ready(function () {
+  $('.image-link').magnificPopup({
         //delegate: 'a',
         type: 'image'
     });
-    
+
     $('.chart-bars').magnificPopup({
         delegate: 'a', // child items selector, by clicking on it popup will open
         type: 'image',
-       // type: 'iframe'
+        // type: 'iframe'
         // other options
-    });
+    });  
     $('.iframe-popup').magnificPopup({
         delegate: 'a', // child items selector, by clicking on it popup will open
-       // type: 'image',
-       type: 'iframe'
+        // type: 'image',
+        type: 'iframe'
         // other options
     });
 });
