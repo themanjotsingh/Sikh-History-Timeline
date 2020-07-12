@@ -39,7 +39,6 @@ $(document).ready(function () {
                 if (each.years === "-") {
                     continue;
                 }
-                info = each.name;
                 lines = each.name;
                
 
