@@ -2,7 +2,7 @@
 
 Sikh History presented in a timeline.
 
-[CLICK HERE TO VIEW](https://timeline.manjotsingh.xyz/)
+[CLICK HERE TO VIEW](https://timeline.sikhresources.site/)
 
 
 
